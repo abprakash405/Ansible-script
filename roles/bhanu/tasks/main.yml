@@ -1,0 +1,4 @@
+---
+# tasks file for bhanu
+- name: Copy one file to destination server 
+  copy: src=sample.txt dest=/etc/sample.txt

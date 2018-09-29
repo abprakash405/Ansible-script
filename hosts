@@ -1,0 +1,2 @@
+[dev-servers]
+13.233.125.211 ansible_ssh_user=ubuntu
