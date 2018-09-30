@@ -1,0 +1,36 @@
+---
+- name: Adding a java ppa repository 
+  shell: sudo add-apt-repository ppa:webupd8team/java
+- name: updating the service 
+  shell: sudo apt-get update
+- name: wait for the above process to finish
+  apt: update_cache=yes cache_valid_time=3600
+  ##shell: sudo apt-get install git -y
+  register: apt_status
+  until: apt_status|success
+  delay: 6
+  retries: 10
+
+- name: Installing java8 
+  shell: sudo apt-get install oracle-java8-installer -y
+- wait_for:
+    path: /var/lib/dpkg/lock
+    state: absent
+- name: Install open JDK 
+  shell: sudo apt install openjdk-8-jdk -y
+- wait_for:
+    path: /var/lib/dpkg/lock
+    state: absent
+- name: setting up open jdk path in system
+  shell: sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
+- name: Installing tomcat7
+  shell: sudo apt-get install tomcat7 -y
+- wait_for:
+    path: /var/lib/dpkg/lock
+    state: absent
+- name: modifying tomcat users file
+  shell: sudo sed -i 's$</tomcat-users>$<tomcat-users><user username="admin" password="admin" roles="manager-gui,admin-gui"/></tomcat-users>$g' /etc/tomcat7/tomcat-users.xml
+- name: restarting the service
+  shell: sudo service tomcat7 restart
+
+

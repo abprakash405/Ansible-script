@@ -1,3 +1,4 @@
 [dev-servers]
-13.233.125.157 ansible_ssh_user=ubuntu
-52.66.204.188 ansible_ssh_user=ubuntu
+#13.126.68.32 ansible_ssh_user=ubuntu
+#52.66.214.163 ansible_ssh_user=ubuntu
+13.232.150.101 ansible_ssh_user=ubuntu
