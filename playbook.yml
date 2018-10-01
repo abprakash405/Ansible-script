@@ -1,4 +1,11 @@
 ---
+- hosts: localhost
+  tasks:
+     - git:
+        repo: 'https://github.com/abprakash405/Repo2.git'
+        dest: '{{playbook_dir}}/roles/tomcat-jenkins/files/repo2'
+
+
 - hosts: dev-servers
   tasks:
   - name: install apache server
@@ -6,3 +13,4 @@
   roles: 
   - {role: bhanu-apache}
   - {role: tomcat-jenkins}
+
