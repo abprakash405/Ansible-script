@@ -2,3 +2,6 @@
 #13.126.68.32 ansible_ssh_user=ubuntu
 52.66.240.88 ansible_ssh_user=ubuntu
 13.126.193.0 ansible_ssh_user=ubuntu
+
+[localhost]
+127.0.0.1
